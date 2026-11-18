@@ -1,7 +1,5 @@
 import { evaluateSubmission, checkAccess } from '../lib/evaluate.js';
 
-export const maxDuration = 60;
-
 export async function POST(request) {
   if (!checkAccess(request.headers.get('x-access-code'))) {
     return Response.json({ error: 'رمز الدخول غير صحيح' }, { status: 401 });
