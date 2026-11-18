@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>لوحة تحكيم الجودة الذكية</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">ورشة الجودة المؤسسية · ٣ جولات · ٤ فرق</p>
+      <h1>لوحة تحكيم الجودة الذكية</h1>
+      <p class="muted">تقييم مدعوم بالذكاء الاصطناعي للصورة أو النص، مع حفظ محلي وتصدير كامل.</p>
+    </div>
+    <div class="toolbar">
+      <span id="connectionBadge" class="badge warn">غير متصل بالـAI</span>
+      <button id="exportCsv" class="ghost">تصدير CSV</button>
+      <button id="exportJson" class="ghost">تصدير JSON</button>
+      <label class="ghost" style="cursor:pointer">استيراد JSON<input id="importJson" type="file" accept="application/json" hidden></label>
+      <button id="resetAll" class="danger ghost">تصفير الكل</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="notice" id="setupNotice">
+      <strong>قبل البدء:</strong> التقييم بالذكاء الاصطناعي يحتاج إضافة <code>GEMINI_API_KEY</code> في إعدادات Vercel (Environment Variables). التعبئة والحفظ والتصدير تعمل الآن بدونه.
+      <button id="dismissNotice" class="icon" aria-label="إخفاء التنبيه">×</button>
+    </section>
+
+    <section class="summary-grid" id="leaderboardCards"></section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <span class="section-kicker">الجولات</span>
+          <h2>اختر التحدي ثم قيّم الفرق</h2>
+        </div>
+        <div id="roundTabs" class="tabs" role="tablist"></div>
+      </div>
+      <div id="challengeBrief" class="challenge-brief"></div>
+      <div id="teamGrid" class="team-grid"></div>
+    </section>
+
+    <section class="panel reference-panel">
+      <div class="panel-head">
+        <div>
+          <span class="section-kicker">حوكمة التقييم</span>
+          <h2>مفاتيح الإجابة المرجعية</h2>
+        </div>
+        <button id="saveRubrics" class="primary">حفظ المفاتيح</button>
+      </div>
+      <p class="muted">هذه المفاتيح هي نقطة بداية مستخلصة من المحادثة المرجعية، ويمكن تعديلها قبل الورشة. يرسلها الخادم مع كل طلب تقييم.</p>
+      <div id="rubricEditor" class="rubric-editor"></div>
+    </section>
+
+    <footer>البيانات تحفظ في هذا المتصفح فقط. لا تُرسل الصور أو النصوص إلى أي جهة إلا عند الضغط على «تقييم بالـAI».</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

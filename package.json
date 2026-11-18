@@ -1,0 +1,13 @@
+{
+  "name": "quality-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "لوحة تحكيم الجودة الذكية — AI-assisted judging dashboard for the Smart Quality workshop",
+  "scripts": {
+    "dev": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
