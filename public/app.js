@@ -35,12 +35,12 @@ async function evaluate(team){const c=challenges[activeRound],d=state.teams[team
  const call=code=>fetch('/api/evaluate',{method:'POST',headers:{'Content-Type':'application/json','x-access-code':code},body:JSON.stringify({team,challenge:c.name,prompt:d.prompt||'',text:d.text||'',image:d.image||'',rubric:state.rubrics[activeRound]||c.key,submittedAt})});
  let errMsg='';
  try{let res=await call(accessCode(false));if(res.status===401){res=await call(accessCode(true))}
-  let out;try{out=await res.json()}catch{out={error:await res.text().catch(()=>'')}}
+  const raw=await res.text();let out;try{out=JSON.parse(raw)}catch{out={error:res.status===504?'انتهت مهلة الخادم، حاول مرة أخرى':raw.slice(0,200)}}
   if(!res.ok)throw Object.assign(new Error(out.error||('HTTP '+res.status)),{status:res.status});
   const cur=state.teams[team][c.id]||{};
   state.teams[team][c.id]={...cur,...out,status:'تم تقييم AI',error:'',submittedAt};
   recomputeSpeed(c.id);persist()}
- catch(e){errMsg=e.status===503?'لم يتم التقييم: مفتاح GEMINI_API_KEY غير مضاف في الخادم':e.status===401?'رمز الدخول غير صحيح':e.status===413?'الصورة كبيرة جداً':e.status?'لم يتم التقييم: '+e.message:'لم يتم التقييم: تعذر الاتصال بالخادم';
+ catch(e){errMsg=e.status===503?'لم يتم التقييم: مفتاح GEMINI_API_KEY غير مضاف في الخادم':e.status===401?'رمز الدخول غير صحيح':e.status===413?'الصورة كبيرة جداً':e.status===504?'انتهت مهلة التقييم، اضغط «تقييم» مرة أخرى':e.status?'لم يتم التقييم: '+e.message:'لم يتم التقييم: تعذر الاتصال بالخادم';
   state.teams[team][c.id]??={};state.teams[team][c.id].error=errMsg;persist()}
  finally{busy.delete(k);renderTeams();if(errMsg)alert(errMsg)}}
 
