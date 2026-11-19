@@ -9,8 +9,8 @@
 <body>
   <header class="topbar">
     <div>
-      <p class="eyebrow">ورشة الجودة المؤسسية · ٣ جولات · ٤ فرق</p>
-      <h1>لوحة تحكيم الجودة الذكية</h1>
+      <p class="eyebrow">تقييم فردي · ٣ جولات · مشارك واحد</p>
+      <h1>لوحة تقييم المشارك الذكية</h1>
       <p class="muted">تقييم مدعوم بالذكاء الاصطناعي للصورة أو النص، مع حفظ محلي وتصدير كامل.</p>
     </div>
     <div class="toolbar">
@@ -24,7 +24,7 @@
 
   <main class="wrap">
     <section class="notice" id="setupNotice">
-      <strong>قبل البدء:</strong> التقييم بالذكاء الاصطناعي يحتاج إضافة <code>GEMINI_API_KEY</code> في إعدادات Vercel (Environment Variables). التعبئة والحفظ والتصدير تعمل الآن بدونه.
+      <strong>طريقة التقييم:</strong> الدرجة لا يحددها Gemini وحده. يتم فحص النتيجة مقابل قائمة تحقق مرجعية، ثم تُحسب الدقة والتطبيق برمجياً.
       <button id="dismissNotice" class="icon" aria-label="إخفاء التنبيه">×</button>
     </section>
 
@@ -34,7 +34,7 @@
       <div class="panel-head">
         <div>
           <span class="section-kicker">الجولات</span>
-          <h2>اختر التحدي ثم قيّم الفرق</h2>
+          <h2>اختر التحدي ثم قيّم المشارك</h2>
         </div>
         <div id="roundTabs" class="tabs" role="tablist"></div>
       </div>
@@ -50,7 +50,7 @@
         </div>
         <button id="saveRubrics" class="primary">حفظ المفاتيح</button>
       </div>
-      <p class="muted">هذه المفاتيح هي نقطة بداية مستخلصة من المحادثة المرجعية، ويمكن تعديلها قبل الورشة. يرسلها الخادم مع كل طلب تقييم.</p>
+      <p class="muted">هذه المفاتيح هي نقطة بداية مستخلصة من المحادثة المرجعية، ويمكن تعديلها قبل الورشة. يرسلها الخادم مع قائمة التحقق في كل طلب تقييم.</p>
       <div id="rubricEditor" class="rubric-editor"></div>
     </section>
 
