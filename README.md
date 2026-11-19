@@ -22,7 +22,7 @@ server.mjs       خادم محلي اختياري للتجربة على جهاز
 |---|---|---|
 | `GEMINI_API_KEY` | نعم | مفتاح Gemini من https://aistudio.google.com/apikey |
 | `ACCESS_CODE` | مُستحسن | رمز يطلبه الموقع من المحكّم قبل أول تقييم، حتى لا يستهلك أي زائر مفتاحك |
-| `GEMINI_MODEL` | لا | الافتراضي `gemini-flash-latest` (يشير دائماً لأحدث نموذج Flash) |
+| `GEMINI_MODEL` | لا | قائمة نماذج مفصولة بفواصل تُجرَّب بالترتيب عند الازدحام. الافتراضي: `gemini-3.5-flash,gemini-2.5-flash,gemini-3.5-flash-lite` |
 
 ## التشغيل محلياً
 
